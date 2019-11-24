@@ -1,0 +1,50 @@
+
+@-webkit-keyframes border {
+  0%,
+  100% {
+    border: 3px dashed #fff;
+  }
+  50% {
+    border: 3px dotted #fff;
+  }
+}
+
+@keyframes border {
+  0%,
+  100% {
+    border: 3px dashed #fff;
+  }
+  50% {
+    border: 3px dotted #fff;
+  }
+}
+
+@-webkit-keyframes button {
+  0%,
+  100% {
+    background-image: linear-gradient(to top, #fc6f6f 0%, #ff0015 100%);
+  }
+  50% {
+    background-image: linear-gradient(to top, #ff0015 0%, #fc6f6f 100%);
+  }
+}
+
+@-ms-keyframes button {
+  0%,
+  100% {
+    background-image: linear-gradient(to top, #fc6f6f 0%, #ff0015 100%);
+  }
+  50% {
+    background-image: linear-gradient(to top, #ff0015 0%, #fc6f6f 100%);
+  }
+}
+
+@keyframes button {
+  0%,
+  100% {
+    background-image: linear-gradient(to top, #fc6f6f 0%, #ff0015 100%);
+  }
+  50% {
+    background-image: linear-gradient(to top, #ff0015 0%, #fc6f6f 100%);
+  }
+}

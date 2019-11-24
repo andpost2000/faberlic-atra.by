@@ -1,0 +1,89 @@
+.features {
+  padding: 0 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  &__title {
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    position: relative;
+    width: 175px;
+    padding-top: 100px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 90px;
+      height: 90px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    &--account::before {
+      background-image: url(/img/general/account-icon.svg);
+    }
+
+    &--gift::before {
+      background-image: url(/img/general/gift-icon.svg);
+    }
+
+    &--business::before {
+      background-image: url(/img/general/business-icon.svg);
+    }
+
+    &--discount::before {
+      background-image: url(/img/general/discount-icon.svg);
+    }
+
+    &--delivery::before {
+      width: 110px;
+      background-image: url(/img/general/delivery-icon.svg);
+    }
+  }
+
+  &__text {
+    padding: 0 40px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    text-align: center;
+    font-size: 25px;
+    line-height: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .features {
+    padding: 10px;
+    &__list {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    &__title {
+      font-size: 22px;
+    }
+
+    &__text {
+      padding: 0;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+}

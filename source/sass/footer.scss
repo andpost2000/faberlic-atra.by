@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 22px;
+}
+
+@media (max-width: 767px) {
+  .footer__info {
+    width: 100%;
+    text-align: center;
+  }
+}

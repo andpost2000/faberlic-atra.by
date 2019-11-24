@@ -1,0 +1,45 @@
+.present {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 20px 3px -10px rgba(0, 0, 0, 0.3);
+  animation: border 0.3s ease-in-out infinite;
+
+  &__img {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  &__img img {
+    display: block;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  &__btn {
+    animation: button 1s ease-in-out infinite;
+
+    &:hover {
+      animation: none;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .present {
+    width: 100vw;
+    box-shadow: unset;
+    border-radius: unset;
+    animation: unset;
+
+    img {
+      border-radius: unset;
+    }
+
+    .btn {
+      border-radius: 0;
+    }
+  }
+}

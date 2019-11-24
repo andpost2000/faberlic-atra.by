@@ -1,0 +1,38 @@
+.promo {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+
+  &__img-wrap {
+    width: 100%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__btn {
+    position: absolute;
+    left: 16.5%;
+    bottom: 20px;
+    z-index: 5;
+    margin-top: -45px;
+    margin-bottom: 25px;
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .promo {
+    &__btn {
+      position: unset;
+      margin: 20px;
+    }
+  }
+}

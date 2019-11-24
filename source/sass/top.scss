@@ -1,0 +1,35 @@
+.top {
+  display: flex;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__present {
+    position: absolute;
+    top: 5%;
+    right: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .top {
+    height: 444px;
+  }
+}
+
+@media (max-width: 767px) {
+  .top {
+    height: unset;
+    img {
+      display: none;
+    }
+    &__present {
+      position: relative;
+      top: unset;
+      right: unset;
+    }
+  }
+}

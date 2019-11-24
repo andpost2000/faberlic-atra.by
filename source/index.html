@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html language="ru" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Faberlic-atra</title>
+  <link rel="stylesheet" href="/css/style-min.css">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Только сейчас этот подарок совершенно бесплатно!!!">
+  <meta property="og:description" content="Торопитесь, время ограничено!">
+  <meta property="og:url" content="http://faberlic-atra.by/">
+  <meta property="og:image:type" content="image/jpg">
+  <meta property="og:image" content="http://faberlic-atra.by/wp-content/themes/faberlic-atra/img/2.jpg">
+  <meta property="og:image:width" content="730" />
+  <meta property="og:image:height" content="270" />
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/flipclock.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-title">
+      <h1>Присоединяйтесь к Faberlic абсолютно бесплатно и получайте подарок уже в следующем&nbsp;каталоге!</h1>
+    </div>
+    <header class="header">
+      <div class="header__info">
+        <img src="/img/general/fl_logo.png" alt="logo" width="210" height="45" class="header__logo">
+        <span class="header__title">Акция завершится&nbsp;через:</span>
+      </div>
+      <div class="header__clock clock">
+        <b class="hidden">timer</b>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="top">
+        <img src="/img/top-img.jpg" alt="present" class="top__img">
+        <div class="top__present present">
+          <picture class="present__img">
+            <source media="(max-width: 767px)" srcset="/img/podarok--mobil@1x.jpg 1x, /img/podarok--mobil@2x.jpg 2x"
+              width="414">
+            <img src="/img/podarok.jpg" width="220" height="360" alt="present" class="present__img">
+          </picture>
+          <button onclick="yaCounter47562541.reachGoal('nazhal_knopku_top'); return true;"
+            class="present__btn btn btn--open-form btn--red">Получить подарок</button>
+        </div>
+      </section>
+      <section class="features">
+        <h2 class="features__title">Регистрация в Фаберлик &mdash; это выгодно!</h2>
+        <ul class="features__list">
+          <li class="features__item features__item--account">Личный кабинет и полный контроль покупки</li>
+          <li class="features__item features__item--gift">Подарки новичкам акции скидки распродажи</li>
+          <li class="features__item features__item--delivery">Удобная, бесплатная доставка</li>
+        </ul>
+        <p class="features__text">Представительства Фаберлик открыты в 42 странах мира.
+          Станьте&nbsp;представителем&nbsp;Фаберлик и получите ещё больше скидок сразу после бесплатной регистрации.</p>
+      </section>
+      <section class="promo">
+        <div class="promo__img-wrap">
+          <img src="/img/bottom-img.jpg" width="1160" height="551" alt="promo" class="promo__img1">
+        </div>
+        <button onclick="yaCounter47562541.reachGoal('nazhal_knopku_bottom'); return true;"
+          class="promo__btn btn btn--open-form btn--red">Зарегистрироваться</button>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="social">
+        <a href="https://vk.com/club107666962" class="social__link social__link--vk" target="_blank">
+          <svg width="30">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-vk"></use>
+          </svg>
+        </a>
+        <a href="https://www.ok.ru/group/54893863764095" class="social__link social__link--ok" target="_blank">
+          <svg width="20">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-ok"></use>
+          </svg>
+        </a>
+      </div>
+      <p class="footer__info">ИП Атрощенко</p>
+      <p class="footer__info">УНП: 390254108</p>
+    </footer>
+  </div>
+  <div class="overlay">
+    <form action="/mail/send-mail.php"
+      onsubmit="yaCounter47562541.reachGoal('zapolnil_formu_i_nazhal_knopku'); return true;" class="contact-form">
+      <button type="button" class="contact-form__close-btn btn--close-form">Закрыть</button>
+      <p class="contact-form__field">
+        <label for="name">Фамилия Имя Отчество</label>
+        <input id="name" name="name" type="text" required>
+      </p>
+      <p class="contact-form__field">
+        <label for="date">Дата рождения</label>
+        <input id="date" name="date" type="text" required>
+      </p>
+      <p class="contact-form__field">
+        <label for="mail">Ваш e-mail</label>
+        <input id="mail" name="mail" type="email" required>
+      </p>
+      <p class="contact-form__field">
+        <label for="phone">Номер мобильного телефона</label>
+        <input id="phone" name="phone" type="text" required>
+      </p>
+      <p class="contact-form__field">
+        <label for="address">Страна, Область, Город проживания</label>
+        <input id="address" name="address" type="text" required>
+      </p>
+      <button type="submit" class="contact-form__button btn btn--submit">Зарегистрироваться</button>
+      <div class="contact-form__ok">
+        <svg width="70">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-check-ok"></use>
+        </svg>
+        <p class="contact-form__ok-title">Отлично!</p>
+        <p class="contact-form__ok-text">В ближайшее время с&nbsp;вами свяжется консультант</p>
+        <button type="button" class="contact-form__btn btn btn--close-form btn--submit">Закрыть</button>
+      </div>
+    </form>
+  </div>
+  <script src="/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"
+    type="text/javascript"></script>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(47562541, "init", {
+      id: 47562541,
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/47562541" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+</body>
+
+</html>
