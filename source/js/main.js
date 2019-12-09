@@ -1,4 +1,4 @@
-var futureDate = new Date("December 15, 2019 5:00 PM EDT");
+var futureDate = new Date("December 29, 2019 5:00 PM EDT");
 var clock;
 var currentDate = new Date();
 var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
