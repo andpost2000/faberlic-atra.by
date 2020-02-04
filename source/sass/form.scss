@@ -61,12 +61,36 @@
     }
   }
 
+  &__title {
+    margin-top: 0;
+    b {
+      color: #000;
+      font-size: 18px;
+      line-height: 16px;
+    }
+  }
+
+  &__row {
+    display: flex;
+  }
+
   &__field {
     margin: 0;
     margin-bottom: 10px;
+    width: 100%;
+
+    &:first-child {
+      margin-right: 10px;
+    }
 
     label {
       margin-left: 5px;
+
+      b {
+        color: #000;
+        font-size: 18px;
+        line-height: 16px;
+      }
     }
 
     input {
@@ -140,6 +164,9 @@
   .contact-form {
     width: 100%;
     box-sizing: border-box;
+    position: absolute;
+    box-shadow: none;
+    border: none;
     top: 0;
     left: 0;
     transform: unset;

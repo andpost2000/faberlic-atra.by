@@ -48,6 +48,9 @@
             class="present__btn btn btn--open-form btn--red">Получить подарок</button>
         </div>
       </section>
+      <section class="middle">
+        <img src="/img/middle-img.jpg" alt="present" class="middle__img">
+      </section>
       <section class="features">
         <h2 class="features__title">Регистрация в Фаберлик &mdash; это выгодно!</h2>
         <ul class="features__list">
@@ -70,12 +73,12 @@
       <div class="social">
         <a href="https://vk.com/club107666962" class="social__link social__link--vk" target="_blank">
           <svg width="30">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-vk"></use>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-vk"></use>
           </svg>
         </a>
         <a href="https://www.ok.ru/group/54893863764095" class="social__link social__link--ok" target="_blank">
           <svg width="20">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-ok"></use>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-ok"></use>
           </svg>
         </a>
       </div>
@@ -87,30 +90,47 @@
     <form action="/mail/send-mail.php"
       onsubmit="yaCounter47562541.reachGoal('zapolnil_formu_i_nazhal_knopku'); return true;" class="contact-form">
       <button type="button" class="contact-form__close-btn btn--close-form">Закрыть</button>
-      <p class="contact-form__field">
-        <label for="name">Фамилия Имя Отчество</label>
-        <input id="name" name="name" type="text" required>
-      </p>
-      <p class="contact-form__field">
-        <label for="date">Дата рождения</label>
-        <input id="date" name="date" type="text" required>
-      </p>
-      <p class="contact-form__field">
-        <label for="mail">Ваш e-mail</label>
-        <input id="mail" name="mail" type="email" required>
-      </p>
-      <p class="contact-form__field">
-        <label for="phone">Номер мобильного телефона</label>
-        <input id="phone" name="phone" type="text" required>
-      </p>
-      <p class="contact-form__field">
-        <label for="address">Страна, Область, Город проживания</label>
-        <input id="address" name="address" type="text" required>
-      </p>
+      <p class="contact-form__title">Обязательные поля отмечены <b>*</b></p>
+      <div class="contact-form__row">
+        <p class="contact-form__field">
+          <label for="last_name">Фамилия <b>*</b></label>
+          <input id="last_name" name="last_name" type="text" required>
+        </p>
+        <p class="contact-form__field">
+          <label for="first_name">Имя <b>*</b></label>
+          <input id="first_name" name="first_name" type="text" required>
+        </p>
+      </div>
+      <div class="contact-form__row">
+        <p class="contact-form__field">
+          <label for="parent_name">Отчество</label>
+          <input id="parent_name" name="parent_name" type="text">
+        </p>
+        <p class="contact-form__field">
+          <label for="date">Дата рождения <b>*</b></label>
+          <input id="date" name="date" type="text" required>
+        </p>
+      </div>
+      <div class="contact-form__row">
+        <p class="contact-form__field">
+          <label for="mail">Ваш e-mail</label>
+          <input id="mail" name="mail" type="email">
+        </p>
+        <p class="contact-form__field">
+          <label for="phone">Номер моб. тел. <b>*</b></label>
+          <input id="phone" name="phone" type="telephone" required>
+        </p>
+      </div>
+      <div class="contact-form__row">
+        <p class="contact-form__field">
+          <label for="address">Страна, Город проживания <b>*</b></label>
+          <input id="address" name="address" type="text" required>
+        </p>
+      </div>
       <button type="submit" class="contact-form__button btn btn--submit">Зарегистрироваться</button>
       <div class="contact-form__ok">
         <svg width="70">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-check-ok"></use>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/img/sprite.svg#icon-svg-check-ok"></use>
         </svg>
         <p class="contact-form__ok-title">Отлично!</p>
         <p class="contact-form__ok-text">В ближайшее время с&nbsp;вами свяжется консультант</p>

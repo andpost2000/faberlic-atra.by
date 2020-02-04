@@ -3,6 +3,12 @@ body {
   margin: 0;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
   background-color: rgba(0, 0, 0, 0.5);
+  &.has-overlay {
+    overflow: hidden;
+  }
+  @media (max-width: 767px) {
+    overflow: overlay;
+  }
 }
 
 .container {
@@ -30,6 +36,10 @@ body {
   z-index: 5000;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity ease-out 0.3s;
+  @media (max-width: 767px) {
+    overflow-y: auto;
+    background-color: #fff;
+  }
 }
 
 .btn {

@@ -1,4 +1,4 @@
-var futureDate = new Date("December 29, 2019 5:00 PM EDT");
+var futureDate = new Date("February 09, 2020 5:00 PM EDT");
 var clock;
 var currentDate = new Date();
 var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
@@ -23,11 +23,13 @@ clock = $('.clock').FlipClock(diff, {
 $('.btn--open-form').click(function () {
   $('.overlay').fadeIn(100);
   $('.contact-form').show(300);
+  $('body').addClass('has-overlay')
 });
 
 $(".btn--close-form").click(function () {
   $('.contact-form').hide(100);
   $('.overlay').fadeOut(300);
+  $('body').removeClass('has-overlay');
 });
 
 
@@ -35,7 +37,9 @@ $(".contact-form").submit(function (event) {
   // Предотвращаем обычную отправку формы
   event.preventDefault();
   $.post('http://faberlic-atra.by/mail/send-mail.php', {
-    'name': $('#name').val(),
+    'first_name': $('#first_name').val(),
+    'last_name': $('#last_name').val(),
+    'parent_name': $('#parent_name').val(),
     'date': $('#date').val(),
     'mail': $('#mail').val(),
     'phone': $('#phone').val(),

@@ -1,0 +1,12 @@
+.middle {
+  &__img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .middle {
+    height: auto;
+  }
+}

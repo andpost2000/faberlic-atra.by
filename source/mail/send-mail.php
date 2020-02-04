@@ -5,10 +5,22 @@ $emailTheme = 'Запрос регистрации"';
 //Отключение предупреждений и нотайсов (warning и notice) на сайте
 // error_reporting( E_ERROR );
 // создание переменных из полей формы		
-if (isset($_POST['name'])) {
-  $name      = $_POST['name'];
-  if ($name == '') {
-    unset($name);
+if (isset($_POST['first_name'])) {
+  $first_name      = $_POST['first_name'];
+  if ($first_name == '') {
+    unset($first_name);
+  }
+}
+if (isset($_POST['last_name'])) {
+  $last_name      = $_POST['last_name'];
+  if ($last_name == '') {
+    unset($last_name);
+  }
+}
+if (isset($_POST['parent_name'])) {
+  $parent_name      = $_POST['parent_name'];
+  if ($parent_name == '') {
+    unset($parent_name);
   }
 }
 if (isset($_POST['date'])) {
@@ -37,9 +49,19 @@ if (isset($_POST['address'])) {
 }
 // if (isset($_POST['sab']))			{$sab			= $_POST['sab'];		if ($sab == '')		{unset($sab);}}
 //стирание треугольных скобок из полей формы
-if (isset($name)) {
-  $name = stripslashes($name);
-  $name = htmlspecialchars($name);
+if (isset($first_name)) {
+  $first_name = stripslashes($first_name);
+  $first_name = htmlspecialchars($first_name);
+}
+if (isset($last_name)) {
+  $last_name = stripslashes($last_name);
+  $last_name = htmlspecialchars($last_name);
+}
+if (isset($parent_name)) {
+  $parent_name = stripslashes($parent_name);
+  $parent_name = htmlspecialchars($parent_name);
+} else {
+  $parent_name = '===не указано===';
 }
 if (isset($date)) {
   $date = stripslashes($date);
@@ -48,6 +70,8 @@ if (isset($date)) {
 if (isset($mail)) {
   $mail = stripslashes($mail);
   $mail = htmlspecialchars($mail);
+} else {
+  $mail = '===не указан===';
 }
 if (isset($phone)) {
   $phone = stripslashes($phone);
@@ -59,6 +83,7 @@ if (isset($address)) {
 }
 $dateSend = date("d-m-Y H:i:s"); // Дата отправки
 $addressSend = "nataatra2016@gmail.com";// адрес почты куда придет письмо
+// $addressSend = "mandpost2000@gmail.com";// адрес почты куда придет письмо
 $headers    = "Content-type: text/html; charset=utf-8 \r\n";//хедер кодировка (Это важно)
 $headers   .= "From: faberlic-atra@faberlic-atra.by";//хедер от кого
 // текст письма 
@@ -70,7 +95,15 @@ $note_text = "
 <body>
   <h1>Запрос</h1>
   <div>
-    Имя: <b>$name</b>
+    Фамилия: <b>$last_name</b>
+  </div>
+  <div>
+  <div>
+    Имя: <b>$first_name</b>
+  </div>
+  <div>
+  <div>
+    Отчество: <b>$parent_name</b>
   </div>
   <div>
     Дата рождения: <b>$date</b>
@@ -88,7 +121,7 @@ $note_text = "
 </html>
 ";
 
-if (isset($name)) {
+if (isset($first_name)) {
   mail($addressSend, $emailTheme, $note_text, $headers);
   // сообщение после отправки формы
   // echo "Уважаемый(ая) <b>$name</b> ваш запрос принят!";
