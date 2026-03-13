@@ -1,6 +1,7 @@
 .present {
   display: flex;
   flex-direction: column;
+  width: 220px;
   border-radius: 5px;
   box-shadow: 0 20px 3px -10px rgba(0, 0, 0, 0.3);
   animation: border 0.3s ease-in-out infinite;
@@ -12,6 +13,8 @@
 
   &__img img {
     display: block;
+    width: 100%;
+    height: auto;
   }
 
   &__text {

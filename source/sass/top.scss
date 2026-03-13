@@ -2,31 +2,28 @@
   display: flex;
   position: relative;
 
-  img {
-    width: 100%;
+  > img {
+    width: calc(100% - 230px);
     height: auto;
   }
 
   &__present {
     position: absolute;
-    top: 5%;
-    right: 10px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .top {
-    height: 444px;
+    top: -3px;
+    right: 2px;
   }
 }
 
 @media (max-width: 767px) {
   .top {
     height: unset;
-    img {
-      display: none;
+    flex-direction: column;
+    > img {
+      order: 2;
+      width: 100%;
     }
     &__present {
+      order: 1;
       position: relative;
       top: unset;
       right: unset;

@@ -12,6 +12,7 @@ var csso = require("gulp-csso");
 var uglify = require("gulp-uglify");
 var server = require("browser-sync").create();
 var imagemin = require("gulp-imagemin");
+var webp = require("gulp-webp");
 var svgstore = require("gulp-svgstore");
 var posthtml = require("gulp-posthtml");
 var include = require("posthtml-include");
@@ -102,7 +103,7 @@ gulp.task("images", function() {
 // для перевода картинок в webp
 gulp.task("webp", function() {
   return gulp.src("source/img/**/*.{png,jpg}")
-  .pipe(webp({quality: 90}))
+  // .pipe(webp({quality: 80}))
   .pipe(gulp.dest("source/img"));
 });
 
@@ -117,5 +118,5 @@ gulp.task("sprite", function() {
 });
 
 gulp.task("clean", function() {return del("build");});
-gulp.task("build", gulp.series("clean", "copy", "css", "sprite", "html", "js"));
+gulp.task("build", gulp.series("clean", "copy", "css", "webp", "sprite", "html", "js"));
 gulp.task("start", gulp.series("build", "server"));

@@ -43,6 +43,7 @@ body {
 }
 
 .btn {
+  display: inline-block;
   outline: none;
   border: 0;
   color: #fff;
@@ -50,7 +51,9 @@ body {
   line-height: 40px;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
   border-radius: 5px;
+  text-align: center;
 
   &--red {
     background-image: linear-gradient(to top, #fc6f6f 0%, #ff0015 100%);

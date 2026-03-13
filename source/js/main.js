@@ -20,17 +20,17 @@ clock = $('.clock').FlipClock(diff, {
   countdown: true
 });
 
-$('.btn--open-form').click(function () {
-  $('.overlay').fadeIn(100);
-  $('.contact-form').show(300);
-  $('body').addClass('has-overlay')
-});
+// $('.btn--open-form').click(function () {
+//   $('.overlay').fadeIn(100);
+//   $('.contact-form').show(300);
+//   $('body').addClass('has-overlay')
+// });
 
-$(".btn--close-form").click(function () {
-  $('.contact-form').hide(100);
-  $('.overlay').fadeOut(300);
-  $('body').removeClass('has-overlay');
-});
+// $(".btn--close-form").click(function () {
+//   $('.contact-form').hide(100);
+//   $('.overlay').fadeOut(300);
+//   $('body').removeClass('has-overlay');
+// });
 
 
 $(".contact-form").submit(function (event) {
