@@ -1,92 +1,77 @@
-<meta charset="utf-8">
 <?php
 
-$emailTheme = 'Запрос регистрации"';
-//Отключение предупреждений и нотайсов (warning и notice) на сайте
-// error_reporting( E_ERROR );
-// создание переменных из полей формы		
-if (isset($_POST['first_name'])) {
-  $first_name      = $_POST['first_name'];
-  if ($first_name == '') {
-    unset($first_name);
-  }
+declare(strict_types=1);
+
+header('Content-Type: application/json; charset=utf-8');
+
+/**
+ * Send JSON and stop script.
+ *
+ * @param bool $ok
+ * @param string $message
+ * @param int $httpCode
+ */
+function respond(bool $ok, string $message, int $httpCode = 200): void
+{
+  http_response_code($httpCode);
+  echo json_encode(
+    ['ok' => $ok, 'message' => $message],
+    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+  );
+  exit;
 }
-if (isset($_POST['last_name'])) {
-  $last_name      = $_POST['last_name'];
-  if ($last_name == '') {
-    unset($last_name);
-  }
+
+$emailTheme = 'Запрос регистрации';
+
+// Build variables from POST (same fields as the form)
+$first_name = trim((string) ($_POST['first_name'] ?? ''));
+$last_name = trim((string) ($_POST['last_name'] ?? ''));
+$parent_name = trim((string) ($_POST['parent_name'] ?? ''));
+$date = trim((string) ($_POST['date'] ?? ''));
+$mail = trim((string) ($_POST['mail'] ?? ''));
+$phone = trim((string) ($_POST['phone'] ?? ''));
+$address = trim((string) ($_POST['address'] ?? ''));
+
+$missing = [];
+if ($first_name === '') {
+  $missing[] = 'имя';
 }
-if (isset($_POST['parent_name'])) {
-  $parent_name      = $_POST['parent_name'];
-  if ($parent_name == '') {
-    unset($parent_name);
-  }
+if ($last_name === '') {
+  $missing[] = 'фамилия';
 }
-if (isset($_POST['date'])) {
-  $date      = $_POST['date'];
-  if ($date == '') {
-    unset($date);
-  }
+if ($date === '') {
+  $missing[] = 'дата рождения';
 }
-if (isset($_POST['mail'])) {
-  $mail      = $_POST['mail'];
-  if ($mail == '') {
-    unset($mail);
-  }
+if ($phone === '') {
+  $missing[] = 'телефон';
 }
-if (isset($_POST['phone'])) {
-  $phone      = $_POST['phone'];
-  if ($phone == '') {
-    unset($phone);
-  }
+if ($address === '') {
+  $missing[] = 'адрес';
 }
-if (isset($_POST['address'])) {
-  $address      = $_POST['address'];
-  if ($address == '') {
-    unset($address);
-  }
+
+if ($missing !== []) {
+  respond(false, 'Заполните обязательные поля: ' . implode(', ', $missing) . '.', 400);
 }
-// if (isset($_POST['sab']))			{$sab			= $_POST['sab'];		if ($sab == '')		{unset($sab);}}
-//стирание треугольных скобок из полей формы
-if (isset($first_name)) {
-  $first_name = stripslashes($first_name);
-  $first_name = htmlspecialchars($first_name);
-}
-if (isset($last_name)) {
-  $last_name = stripslashes($last_name);
-  $last_name = htmlspecialchars($last_name);
-}
-if (isset($parent_name)) {
-  $parent_name = stripslashes($parent_name);
-  $parent_name = htmlspecialchars($parent_name);
-} else {
-  $parent_name = '===не указано===';
-}
-if (isset($date)) {
-  $date = stripslashes($date);
-  $date = htmlspecialchars($date);
-}
-if (isset($mail)) {
-  $mail = stripslashes($mail);
-  $mail = htmlspecialchars($mail);
-} else {
-  $mail = '===не указан===';
-}
-if (isset($phone)) {
-  $phone = stripslashes($phone);
-  $phone = htmlspecialchars($phone);
-}
-if (isset($address)) {
-  $address = stripslashes($address);
-  $address = htmlspecialchars($address);
-}
-$dateSend = date("d-m-Y H:i:s"); // Дата отправки
-$addressSend = "nataatra2016@gmail.com";// адрес почты куда придет письмо
-// $addressSend = "mandpost2000@gmail.com";// адрес почты куда придет письмо
-$headers    = "Content-type: text/html; charset=utf-8 \r\n";//хедер кодировка (Это важно)
-$headers   .= "From: faberlic-atra@faberlic-atra.by";//хедер от кого
-// текст письма 
+
+// Strip dangerous markup
+$first_name = htmlspecialchars(stripslashes($first_name), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+$last_name = htmlspecialchars(stripslashes($last_name), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+$parent_name = $parent_name !== ''
+  ? htmlspecialchars(stripslashes($parent_name), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+  : '===не указано===';
+$date = htmlspecialchars(stripslashes($date), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+$mail = $mail !== ''
+  ? htmlspecialchars(stripslashes($mail), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+  : '===не указан===';
+$phone = htmlspecialchars(stripslashes($phone), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+$address = htmlspecialchars(stripslashes($address), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+$dateSend = date('d-m-Y H:i:s');
+$addressSend = 'atra-74@mail.ru';
+// $addressSend = 'andpost2000@mail.ru';
+$headers = "Content-type: text/html; charset=utf-8 \r\n";
+$headers .= 'From: faberlic-atra@faberlic-atra.by';
+
 $note_text = "
 <html>
 <head>
@@ -98,10 +83,8 @@ $note_text = "
     Фамилия: <b>$last_name</b>
   </div>
   <div>
-  <div>
     Имя: <b>$first_name</b>
   </div>
-  <div>
   <div>
     Отчество: <b>$parent_name</b>
   </div>
@@ -121,10 +104,10 @@ $note_text = "
 </html>
 ";
 
-if (isset($first_name)) {
-  mail($addressSend, $emailTheme, $note_text, $headers);
-  // сообщение после отправки формы
-  // echo "Уважаемый(ая) <b>$name</b> ваш запрос принят!";
+$sent = @mail($addressSend, $emailTheme, $note_text, $headers);
+
+if ($sent) {
+  respond(true, 'Сообщение отправлено.');
 }
 
-?>
+respond(false, 'Не удалось отправить сообщение. Попробуйте позже или напишите на почту.', 500);

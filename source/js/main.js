@@ -20,33 +20,61 @@ clock = $('.clock').FlipClock(diff, {
   countdown: true
 });
 
-// $('.btn--open-form').click(function () {
-//   $('.overlay').fadeIn(100);
-//   $('.contact-form').show(300);
-//   $('body').addClass('has-overlay')
-// });
+$('.btn--open-form').click(function () {
+  $('.overlay').fadeIn(100);
+  $('.contact-form').show(300);
+  $('body').addClass('has-overlay')
+});
 
-// $(".btn--close-form").click(function () {
-//   $('.contact-form').hide(100);
-//   $('.overlay').fadeOut(300);
-//   $('body').removeClass('has-overlay');
-// });
+$(".btn--close-form").click(function () {
+  $('.contact-form').hide(100);
+  $('.overlay').fadeOut(300);
+  $('body').removeClass('has-overlay');
+});
 
 
-$(".contact-form").submit(function (event) {
-  // Предотвращаем обычную отправку формы
+$(".contact-form").on("submit", function (event) {
   event.preventDefault();
-  $.post('http://faberlic-atra.by/mail/send-mail.php', {
-    'first_name': $('#first_name').val(),
-    'last_name': $('#last_name').val(),
-    'parent_name': $('#parent_name').val(),
-    'date': $('#date').val(),
-    'mail': $('#mail').val(),
-    'phone': $('#phone').val(),
-    'address': $('#address').val(),
-  },
-    function (data) {
-      $('#result').html(data);
+
+  var $form = $(this);
+  var $submit = $form.find('button[type="submit"]');
+  var $ok = $form.find(".contact-form__ok");
+  var $err = $form.find(".contact-form__error");
+
+  $err.hide().empty();
+  $ok.hide();
+  $submit.prop("disabled", true);
+
+  $.ajax({
+    url: "/mail/send-mail.php",
+    method: "POST",
+    dataType: "json",
+    data: {
+      first_name: $("#first_name").val(),
+      last_name: $("#last_name").val(),
+      parent_name: $("#parent_name").val(),
+      date: $("#date").val(),
+      mail: $("#mail").val(),
+      phone: $("#phone").val(),
+      address: $("#address").val()
+    }
+  })
+    .done(function (res) {
+      if (res && res.ok === true) {
+        $ok.fadeIn(300);
+      } else {
+        var msg = res && res.message ? res.message : "Не удалось отправить форму.";
+        $err.text(msg).fadeIn(300);
+      }
+    })
+    .fail(function (jqXHR) {
+      var msg = "Сервер недоступен или ответ некорректен. Попробуйте позже.";
+      if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+        msg = jqXHR.responseJSON.message;
+      }
+      $err.text(msg).fadeIn(300);
+    })
+    .always(function () {
+      $submit.prop("disabled", false);
     });
-  $('.contact-form__ok').fadeIn(300);
 });
