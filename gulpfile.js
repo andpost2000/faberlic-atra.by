@@ -1,5 +1,7 @@
 "use strict";
 
+var path = require("path");
+var Transform = require("stream").Transform;
 var gulp = require("gulp");
 var plumber = require("gulp-plumber");
 var sourcemap = require("gulp-sourcemaps");
@@ -17,6 +19,41 @@ var svgstore = require("gulp-svgstore");
 var posthtml = require("gulp-posthtml");
 var include = require("posthtml-include");
 var del = require("del");
+
+/**
+ * Append cache-bust query string to main.css/js URLs in HTML (build output).
+ * @param {string} version Query value, e.g. build timestamp.
+ * @returns {Transform}
+ */
+function cacheBustHtml(version) {
+  var stream = new Transform({ objectMode: true });
+  stream._transform = function (file, encoding, callback) {
+    if (file.isNull()) {
+      callback(null, file);
+      return;
+    }
+    if (file.isStream()) {
+      callback(new Error("cacheBustHtml: streaming is not supported"));
+      return;
+    }
+    if (path.extname(file.path).toLowerCase() !== ".html") {
+      callback(null, file);
+      return;
+    }
+    var html = file.contents.toString("utf8");
+    html = html.replace(
+      /(\/css\/style-min\.css)(\?[^"'>\s]*)?/g,
+      "$1?v=" + version
+    );
+    html = html.replace(
+      /(\/js\/main\.js)(\?[^"'>\s]*)?/g,
+      "$1?v=" + version
+    );
+    file.contents = Buffer.from(html, "utf8");
+    callback(null, file);
+  };
+  return stream;
+}
 
 // для css
 gulp.task("css", function () {
@@ -36,11 +73,13 @@ gulp.task("css", function () {
 
 // для html
 gulp.task("html", function () {
+  var assetVersion = String(Date.now());
   return gulp.src("source/*.html")
   .pipe(posthtml([
     include()
   ]))
   .pipe(htmlmin({ collapseWhitespace: true }))
+  .pipe(cacheBustHtml(assetVersion))
   // .pipe(rename("*-min.html"))
   .pipe(gulp.dest("build"));
 });
